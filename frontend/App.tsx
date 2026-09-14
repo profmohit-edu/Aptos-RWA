@@ -22,7 +22,7 @@ function App() {
     try {
       const resource = await aptos.getAccountResource({
         accountAddress: account.address,
-        resourceType: `${MODULE_ADDRESS}::invoice_rwa::InvoiceStore`,
+        resourceType: `${MODULE_ADDRESS}::invoice_engine_v2::InvoiceStore`,
       });
       setInvoices((resource as any).invoices);
     } catch (e) { setInvoices([]); }
@@ -36,7 +36,7 @@ function App() {
     const randomId = "INV-" + Math.floor(Math.random() * 9000 + 1000);
     const transaction: InputTransactionData = {
       data: {
-        function: `${MODULE_ADDRESS}::invoice_rwa::create_invoice`,
+        function: `${MODULE_ADDRESS}::invoice_engine_v2::create_invoice`,
         functionArguments: [randomId, customAmount],
       },
       options: {
